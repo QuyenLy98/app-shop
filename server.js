@@ -5,7 +5,7 @@ import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
-
+import cors from 'cors'
 dotenv.config();
 
 mongoose
@@ -19,10 +19,17 @@ mongoose
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/keys/paypal', (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true");
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
+});
+
+app.get('/', (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true");
+  res.send("API is running");
 });
 
 app.use('/api/seed', seedRouter);
