@@ -18,13 +18,11 @@ mongoose
   });
 
 const app = express();
-const cors = require("cors");
+const cors = f"cors");
 app.use(express.json());
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/keys/paypal', (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials","true");
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 });
 
