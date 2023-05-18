@@ -37,7 +37,7 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`server at http://localhost:${port}`);
