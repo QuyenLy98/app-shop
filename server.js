@@ -18,7 +18,6 @@ mongoose
   });
 
 const app = express();
-const cors = f"cors");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
