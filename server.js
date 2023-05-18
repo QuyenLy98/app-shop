@@ -18,11 +18,13 @@ mongoose
   });
 
 const app = express();
-
+const cors = require("cors");
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/keys/paypal', (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials","true");
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 });
 
@@ -35,7 +37,7 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`server at http://localhost:${port}`);
